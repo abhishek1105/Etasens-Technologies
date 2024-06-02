@@ -37,13 +37,17 @@ public class MainController {
     @GetMapping()
     public String getUsers(Model model) {
         List<User> userList = userService.getAllUsers();
+
         model.addAttribute("usersList", userList);
+
         return "homepage";
     }
 
-    @GetMapping("/showFormForUpdate/{firstName}")
-    public String getDetailsByFirstName(@PathVariable String firstName, Model model) {
-        User user = userService.findByFirstName(firstName);
+    //hitting the url endpoint using first name
+    @GetMapping("/showFormForUpdate/{id}")
+    public String getDetailsByFirstName(@PathVariable Integer id, Model model) {
+        User user = userRepo.findById(id).orElseThrow();
+
         model.addAttribute("updatedUser", user);
         //if user's status is true only then update will occur
         if (user.isEnabled()) return "user-details";
@@ -55,7 +59,6 @@ public class MainController {
     @GetMapping("/option/{id}/{type}")
     public String disableEnable(@PathVariable Integer id, @PathVariable boolean type, Model model) {
         Optional<User> userOptional = userRepo.findById(id);
-
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             user.setEnabled(!type);
