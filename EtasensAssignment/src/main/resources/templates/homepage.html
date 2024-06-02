@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous"
+    />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>Users Homepage</title>
+
+    <link
+            href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
+            rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+
+
+</head>
+<body>
+<div class="container">
+    <h3 style="padding: 10px; text-align: center">Users HomePage</h3>
+    <h1 style="float: right">
+        <a class="btn btn-primary btn-lg mb-2" th:href="@{/users/showFormForAdd}"> Add User</a>
+    </h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr style="text-align: center">
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Is Enabled</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="text-align: center" th:each="tempUser : ${usersList}">
+            <td th:text="${tempUser.id}"></td>
+            <td>  <!--URL template expression using firstName as the
+                     placeholder on which some endpoint will trigger in the controller class
+                     and updation form will be open using some conditions -->
+                <a style="text-decoration: none" class="btn btn-outline-info"
+                   th:href="@{/users/showFormForUpdate/{firstName}(firstName = ${tempUser.firstName})}"
+                   th:text="${tempUser.firstName}"></a>
+            </td>
+
+            <td th:text="${tempUser.lastName}"></td>
+            <td th:text="${tempUser.phone}"></td>
+
+            <td><a style="text-decoration: none"
+                   th:href="@{/users/option/{id}/{type}(id=${tempUser.id}, type = ${tempUser.enabled})}"
+                   th:text="${tempUser.enabled}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
