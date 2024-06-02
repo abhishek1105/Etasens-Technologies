@@ -7,7 +7,9 @@ spring:
     banner-mode: "off"
   datasource:
     driver-class-name: "com.mysql.cj.jdbc.Driver"
+    #    change the db-name
     url: "jdbc:mysql://localhost:3306/assignment"
+    #    change the username and password
     username: "root"
     password: "root"
   jpa:

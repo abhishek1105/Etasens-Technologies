@@ -37,13 +37,17 @@ public class MainController {
     @GetMapping()
     public String getUsers(Model model) {
         List<User> userList = userService.getAllUsers();
+
         model.addAttribute("usersList", userList);
+
         return "homepage";
     }
 
+    //hitting the url endpoint using first name
     @GetMapping("/showFormForUpdate/{firstName}")
     public String getDetailsByFirstName(@PathVariable String firstName, Model model) {
         User user = userService.findByFirstName(firstName);
+
         model.addAttribute("updatedUser", user);
         //if user's status is true only then update will occur
         if (user.isEnabled()) return "user-details";

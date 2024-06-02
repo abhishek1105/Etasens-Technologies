@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
+
         userRepo.save(user);
     }
 
@@ -31,16 +32,12 @@ public class UserServiceImpl implements UserService {
     }
 
 //    @Override
-//    public User findById(Integer id) {
-//        Optional<User> result = userRepo.findById(id);//
-//        User user = null;
-//
-//        if (result.isPresent()) user = result.get();
-//        else throw new RuntimeException("Did not find employee id - " + id);
-//        return user;
+//    public User findByFirstNameAndId(String firstName, Integer id) {
+//        User byFirstName = userRepo.findByFirstName(firstName);
+//        Optional<User> byId = userRepo.findById(id);
+//        if (byFirstName.getId().equals(byId.get().getId()))
+//            return byFirstName;
+//        return byFirstName;
 //    }
-
-
-
 
 }
