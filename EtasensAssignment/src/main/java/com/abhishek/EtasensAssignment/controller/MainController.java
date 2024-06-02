@@ -51,25 +51,7 @@ public class MainController {
         else return "redirect:/users";
     }
 
-    //    @GetMapping("/option/{id}/{type}")
-//    public String disableEnable(@PathVariable Integer id, @PathVariable boolean type, Model model) {
-//        System.out.println(type);
-//        Optional<User> user = userRepo.findById(id);
-//        if (user.isPresent() && type==true) {
-//            User user1 = user.get();
-//            System.out.println(user1);
-//            user1.setEnabled(false);
-//            userRepo.save(user1);
-//        }
-//        else{
-//            User user1 = user.get();
-//            System.out.println(user1);
-//            user1.setEnabled(true);
-//            userRepo.save(user1);
-//        }
-//        return "redirect:/users";
-//
-//    }
+
     @GetMapping("/option/{id}/{type}")
     public String disableEnable(@PathVariable Integer id, @PathVariable boolean type, Model model) {
         Optional<User> userOptional = userRepo.findById(id);
